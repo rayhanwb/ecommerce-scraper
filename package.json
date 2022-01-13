@@ -1,0 +1,24 @@
+{
+  "name": "ecommerce-scraper",
+  "version": "1.0.0",
+  "description": "Ecommerce Scraper",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayhanwb/ecommerce-scraper.git"
+  },
+  "author": "Rayhanwb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rayhanwb/ecommerce-scraper/issues"
+  },
+  "homepage": "https://github.com/rayhanwb/ecommerce-scraper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "cron": "^1.8.2",
+    "puppeteer": "^13.0.1"
+  }
+}

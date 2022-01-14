@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const CronJob = require('cron').CronJob;
+const express = require('express');
+const app = express();
+const port = 3000;
 // const nodemailer = require('nodemailer');
 
 const url =
-  'https://www.tokopedia.com/keychron/keychron-q1-qmk-custom-mechanical-keyboard-fully-assembled-navy-blue-blue-switch';
+  'https://www.tokopedia.com/search?condition=2&ob=9&st=product&q=keycaps';
 
 async function configureBrowser() {
   const browser = await puppeteer.launch();
@@ -22,15 +25,16 @@ async function checkPrice(page) {
   await page.reload();
   let html = await page.evaluate(() => document.body.innerHTML);
 
-  // cheerio('#price', html).each(function () {
-  //   let harga = $(this).text();
-  //   console.log(harga);
-  // });
-
   const load = cheerio.load(html);
-  const harga = load('.price').text().trim();
+  const title = load('.css-12fc2sy').text().trim();
 
-  console.log(harga);
+  app.get('/', (req, res) => {
+    res.send(title);
+  });
+
+  app.listen(port, () => {
+    console.log(`Listening at http://localhost:${port}`);
+  });
 }
 
 async function monitor() {
